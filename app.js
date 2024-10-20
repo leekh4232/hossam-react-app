@@ -1,14 +1,15 @@
-import * as util from "util";
 import fs from "fs";
+import * as util from "util";
 import shelljs from "shelljs";
 import minimist from 'minimist';
 import { exec } from 'child_process';
 
 // 현재 작업 디렉토리
 const cwd = shelljs.pwd().toString();
+console.log(cwd);
 
 // 명령줄 파라미터
-const projectName = minimist(process.argv.slice(2))['_'][0];
+const projectName = minimist(process.argv.slice(1))['_'][0];
 
 const execp = util.promisify(exec);
 const addonPackages = [
