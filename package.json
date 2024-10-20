@@ -1,0 +1,19 @@
+{
+  "name": "create-react-app",
+  "version": "0.0.1",
+  "description": "리액트 프로젝트 생성 및 yarn berry 적용 프로그램",
+  "type": "module",
+  "main": "app.js",
+  "bin": {
+    "create-react-app": "app.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "leekh (leekh4232@gmail.com)",
+  "license": "ISC",
+  "dependencies": {
+    "minimist": "^1.2.8",
+    "shelljs": "^0.8.5"
+  }
+}
