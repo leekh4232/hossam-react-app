@@ -1,3 +1,6 @@
+#!/usr/bin/env node
+
+import shelljs from "shelljs";
 import fs from "fs";
 import * as util from "util";
 import shelljs from "shelljs";
@@ -37,14 +40,6 @@ const addonPackages = [
     'redux-devtools-extension',
     'react-intersection-observer'
 ];
-
-// 명령줄 파라미터
-console.log("-----------------------------------------");
-console.log("|    React.js 프로젝트 생성기           |");
-console.log("|    메가스터디IT아카데미 이광호 강사   |");
-console.log("-----------------------------------------");
-console.log(`${cwd}/${projectName} 위치에 프로젝트를 생성합니다.`);
-console.log(`자동 설치 라이브러리: ${addonPackages.join(', ')}\n`);
 
 /**
  * React Project 생성
@@ -153,6 +148,14 @@ async function callCode(projectName) {
 }
 
 (async () => {
+    // 명령줄 파라미터
+    console.log("-----------------------------------------");
+    console.log("|    React.js 프로젝트 생성기           |");
+    console.log("|    메가스터디IT아카데미 이광호 강사   |");
+    console.log("-----------------------------------------");
+    console.log(`${cwd}/${projectName} 위치에 프로젝트를 생성합니다.`);
+    console.log(`자동 설치 라이브러리: ${addonPackages.join(', ')}\n`);
+
     const bar1 = new cliProgress.SingleBar({
         //format: 'CLI Progress |' + colors.cyan('{bar}') + '| {percentage}% - [{value}/{total}] {status}',
         format: 'CLI Progress |' + colors.cyan('{bar}') + '| {percentage}% | {status}',

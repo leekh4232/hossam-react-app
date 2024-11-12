@@ -113,14 +113,13 @@ minimist@^1.2.8:
   resolved "https://registry.npmjs.org/minimist/-/minimist-1.2.8.tgz"
   integrity sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==
 
-"my-react-init@file:":
+"my-react-init@file:.":
   version "0.0.1"
-  resolved "file:"
   dependencies:
     ansi-colors "^4.1.3"
     cli-progress "^3.12.0"
     minimist "^1.2.8"
-    my-react-init "file:"
+    my-react-init "file:../AppData/Local/Yarn/Cache/v6/npm-my-react-init-0.0.1-d440056b-16f7-4c27-a48d-1fa06a287393-1731405217104/node_modules/my-react-init"
     shelljs "^0.8.5"
 
 once@^1.3.0:
@@ -158,7 +157,7 @@ resolve@^1.1.6:
 
 shelljs@^0.8.5:
   version "0.8.5"
-  resolved "https://registry.npmjs.org/shelljs/-/shelljs-0.8.5.tgz"
+  resolved "https://registry.yarnpkg.com/shelljs/-/shelljs-0.8.5.tgz#de055408d8361bed66c669d2f000538ced8ee20c"
   integrity sha512-TiwcRcrkhHvbrZbnRcFYMLl30Dfov3HKqzp5tO5b4pt6G/SezKcYhmDg15zXVBswHmctSAQKznqNW2LO5tTDow==
   dependencies:
     glob "^7.0.0"
