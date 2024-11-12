@@ -7,26 +7,24 @@ React 프로젝트 생성시마다 Yarn Berry 적용하는 작업 하는게 귀�
 
 ## 사용 방법
 
-### 1) 의존성 패키지 설치
+### 1) 패키지 설치
 
 프로젝트 디렉토리 안에서 명령을 수행합니다.
 
 ```shell
-npm install
+npm install -g https://github.com/leekh4232/my-react-init.git
 ```
 
-### 2) 현재 컴퓨터에 명령어로 등록하기
-
-프로젝트 디렉토리 안에서 명령을 수행합니다.
-
-```shell
-npm install -g .
-```
-
-### 3) 명령 프롬프트 상에서 실행
+### 2) 명령 프롬프트 상에서 실행
 
 프로젝트가 위치할 디렉토리에서 명령프롬프트를 실행하고 다음의 명령으로 실행합니다.
 
 ```shell
-$ create-react-app 프로젝트이름
+$ my-react-init 프로젝트이름
+```
+
+### 3) 삭제 방법
+
+```shell
+$ npm uninstall -g my-react-init
 ```
