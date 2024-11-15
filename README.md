@@ -12,7 +12,7 @@ React 프로젝트 생성시마다 Yarn Berry 적용하는 작업 하는게 귀�
 프로젝트 디렉토리 안에서 명령을 수행합니다.
 
 ```shell
-npm install -g https://github.com/leekh4232/my-react-init.git
+npm install -g https://github.com/leekh4232/hossam-react-app.git
 ```
 
 ### 2) 명령 프롬프트 상에서 실행
@@ -20,11 +20,11 @@ npm install -g https://github.com/leekh4232/my-react-init.git
 프로젝트가 위치할 디렉토리에서 명령프롬프트를 실행하고 다음의 명령으로 실행합니다.
 
 ```shell
-$ my-react-init 프로젝트이름
+$ hossam-react-app 프로젝트이름
 ```
 
 ### 3) 삭제 방법
 
 ```shell
-$ npm uninstall -g my-react-init
+$ npm uninstall -g hossam-react-app
 ```
