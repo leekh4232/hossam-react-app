@@ -1,11 +1,11 @@
 {
-  "name": "my-react-init",
+  "name": "hossam-react-app",
   "version": "0.0.1",
-  "description": "리액트 프로젝트 생성 및 yarn berry 적용 프로그램",
+  "description": "호쌤 리액트 프로젝트 생성 및 yarn berry 적용 프로그램",
   "type": "module",
   "main": "app.js",
   "bin": {
-    "my-react-init": "app.js"
+    "hossam-react-app": "app.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,7 +16,6 @@
     "ansi-colors": "^4.1.3",
     "cli-progress": "^3.12.0",
     "minimist": "^1.2.8",
-    "my-react-init": "file:",
     "shelljs": "^0.8.5"
   }
 }
