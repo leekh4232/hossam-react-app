@@ -37,7 +37,8 @@ const addonPackages = [
     'react-redux',
     '@reduxjs/toolkit',
     'redux-devtools-extension',
-    'react-intersection-observer'
+    'react-intersection-observer',
+    'react-snap'
 ];
 
 /**
