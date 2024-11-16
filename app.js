@@ -156,7 +156,7 @@ async function callCode(projectName) {
     console.log("+----------------------------------------------+");
     console.log("본 프로그램은 메가스터디IT아카데미 프론트엔드 수업에서의 활용을 목적으로 개발되었습니다.\n수업 외 사용 및 무단 배포를 금합니다.\n");
 
-    console.log(`${cwd}/${projectName} 위치에 프로젝트를 생성합니다.`);
+    console.log(`프로젝트 생성 위치: ${cwd}/${projectName}`);
     console.log(`자동 설치 라이브러리: ${addonPackages.join(', ')}\n`);
 
     const bar1 = new cliProgress.SingleBar({
