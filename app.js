@@ -149,10 +149,13 @@ async function callCode(projectName) {
 
 (async () => {
     // 명령줄 파라미터
-    console.log("-----------------------------------------");
-    console.log("|    React.js 프로젝트 생성기           |");
-    console.log("|    메가스터디IT아카데미 이광호 강사   |");
-    console.log("-----------------------------------------");
+    console.log("+----------------------------------------------+");
+    console.log("|                Hossam React App              |");
+    console.log("|             메가스터디 IT 아카데미           |");
+    console.log("|       이광호 강사 (leekh4232@gmail.com)      |");
+    console.log("+----------------------------------------------+");
+    console.log("본 프로그램은 메가스터디IT아카데미 프론트엔드 수업에서의 활용을 목적으로 개발되었습니다.\n수업 외 사용 및 무단 배포를 금합니다.");
+
     console.log(`${cwd}/${projectName} 위치에 프로젝트를 생성합니다.`);
     console.log(`자동 설치 라이브러리: ${addonPackages.join(', ')}\n`);
 
