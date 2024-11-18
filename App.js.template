@@ -13,7 +13,7 @@ import MenuLink from './components/MenuLink';
 import Meta from './components/Meta';
 
 /** reset.css 적용을 위한 import */
-import { Reset } from 'styled-reset';
+// import { Reset } from 'styled-reset';
 
 /** 전역 SCSS 적용을 위한 StyledComponent */
 import GlobalStyles from './components/GlobalStyles';
@@ -24,6 +24,11 @@ import GlobalStyles from './components/GlobalStyles';
 const App = () => {
     return (
         <div>
+            <Meta />
+            {/* reset.css 적용하기 (여기서는 사용 안함) */}
+            {/* <Reset /> */}
+            <GlobalStyles />
+
             <h1>Hello World</h1>
             <hr />
 
