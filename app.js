@@ -7,6 +7,7 @@ import minimist from 'minimist';
 import { exec } from 'child_process';
 import cliProgress from 'cli-progress';
 import colors from 'ansi-colors';
+import {join} from 'path';
 
 // 현재 작업 디렉토리
 const cwd = shelljs.pwd().toString().replaceAll("\\", '/');
@@ -135,6 +136,70 @@ async function installPackages(bar1) {
 }
 
 /**
+ * 프로젝트 기본 상태 구성
+ */
+function createDefaultState(bar1) {
+    bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다. (불필요한 파일 삭제)`});
+
+    const targets = ['App.css', 'App.test.js', 'index.css', 'logo.svg', 'setupTests.js', 'reportWebVitals.js'];
+
+    for (let i=0; i<targets.length; i++) {
+        try {
+            fs.unlinkSync(`src/${targets[i]}`);
+        } catch (err) {
+            continue;
+        }
+    }
+
+    bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다. (index.js)`});
+    const indexTemplate = fs.readFileSync(join(__dirname, 'index.js.template'), {
+        encoding: 'utf8', flag: 'r'
+    });
+
+    fs.writeFileSync('src/index.js', indexTemplate, {
+        encoding: 'utf8', flag: 'r'
+    });
+
+    bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다. (App.js)`});
+    const appTemplate = fs.readFileSync(join(__dirname, 'App.js.template'), {
+        encoding: 'utf8', flag: 'r'
+    });
+
+    fs.writeFileSync('src/App.js', appTemplate, {
+        encoding: 'utf8', flag: 'r'
+    });
+
+    fs.mkdirSync('src/components');
+
+    bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다. (GlobalStyles.js)`});
+    const globalStylesTemplate = fs.readFileSync(join(__dirname, 'GlobalStyles.js.template'), {
+        encoding: 'utf8', flag: 'r'
+    });
+
+    fs.writeFileSync('src/components/GlobalStyles.js', globalStylesTemplate, {
+        encoding: 'utf8', flag: 'r'
+    });
+
+    bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다. (MenuLink.js)`});
+    const menuLinkTemplate = fs.readFileSync(join(__dirname, 'MenuLink.js.template'), {
+        encoding: 'utf8', flag: 'r'
+    });
+
+    fs.writeFileSync('src/components/MenuLink.js', menuLinkTemplate, {
+        encoding: 'utf8', flag: 'r'
+    });
+
+    bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다. (Meta.js)`});
+    const metaTemplate = fs.readFileSync(join(__dirname, 'Meta.js.template'), {
+        encoding: 'utf8', flag: 'r'
+    });
+
+    fs.writeFileSync('src/components/Meta.js', metaTemplate, {
+        encoding: 'utf8', flag: 'r'
+    });
+}
+
+/**
  * VSCode 호출
  */
 async function callCode(projectName) {
@@ -167,7 +232,7 @@ async function callCode(projectName) {
         hideCursor: true
     }, cliProgress.Presets.shades_classic);
 
-    bar1.start(4, 0, {
+    bar1.start(5, 0, {
         status: ""
     });
 
@@ -184,10 +249,13 @@ async function callCode(projectName) {
         bar1.update(3, {status: "필수 패키지를 설치합니다."});
         await installPackages(bar1);
 
-        bar1.update(4, {status: "프로젝트 생성이 완료되었습니다."});
+        bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다.`});
+        createDefaultState(bar1);
+
+        bar1.update(5, {status: "프로젝트 생성이 완료되었습니다."});
         //await callCode(projectName);
 
-        //bar1.update(5, {status: "프로젝트 생성이 완료되었습니다. fin :) "});
+        //bar1.update(6, {status: "프로젝트 생성이 완료되었습니다. fin :) "});
         bar1.stop();
     } catch (e) {
         bar1.stop();
