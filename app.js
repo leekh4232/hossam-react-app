@@ -207,7 +207,7 @@ function createDefaultState(bar1) {
     }
 
     try {
-        fs.rmSync(dir, { recursive: true, force: true });
+        fs.rmSync('.git', { recursive: true, force: true });
     } catch (err) {
     }
 }
