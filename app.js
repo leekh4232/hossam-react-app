@@ -7,7 +7,10 @@ import minimist from 'minimist';
 import { exec } from 'child_process';
 import cliProgress from 'cli-progress';
 import colors from 'ansi-colors';
-import {join} from 'path';
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // 현재 작업 디렉토리
 const cwd = shelljs.pwd().toString().replaceAll("\\", '/');
@@ -152,7 +155,7 @@ function createDefaultState(bar1) {
     }
 
     bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다. (index.js)`});
-    const indexTemplate = fs.readFileSync(join(__dirname, 'index.js.template'), {
+    const indexTemplate = fs.readFileSync(path.join(__dirname, 'index.js.template'), {
         encoding: 'utf8', flag: 'r'
     });
 
@@ -161,7 +164,7 @@ function createDefaultState(bar1) {
     });
 
     bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다. (App.js)`});
-    const appTemplate = fs.readFileSync(join(__dirname, 'App.js.template'), {
+    const appTemplate = fs.readFileSync(path.join(__dirname, 'App.js.template'), {
         encoding: 'utf8', flag: 'r'
     });
 
@@ -172,7 +175,7 @@ function createDefaultState(bar1) {
     fs.mkdirSync('src/components');
 
     bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다. (GlobalStyles.js)`});
-    const globalStylesTemplate = fs.readFileSync(join(__dirname, 'GlobalStyles.js.template'), {
+    const globalStylesTemplate = fs.readFileSync(path.join(__dirname, 'GlobalStyles.js.template'), {
         encoding: 'utf8', flag: 'r'
     });
 
@@ -181,7 +184,7 @@ function createDefaultState(bar1) {
     });
 
     bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다. (MenuLink.js)`});
-    const menuLinkTemplate = fs.readFileSync(join(__dirname, 'MenuLink.js.template'), {
+    const menuLinkTemplate = fs.readFileSync(path.join(__dirname, 'MenuLink.js.template'), {
         encoding: 'utf8', flag: 'r'
     });
 
@@ -190,7 +193,7 @@ function createDefaultState(bar1) {
     });
 
     bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다. (Meta.js)`});
-    const metaTemplate = fs.readFileSync(join(__dirname, 'Meta.js.template'), {
+    const metaTemplate = fs.readFileSync(path.join(__dirname, 'Meta.js.template'), {
         encoding: 'utf8', flag: 'r'
     });
 
