@@ -144,7 +144,7 @@ async function installPackages(bar1) {
 function createDefaultState(bar1) {
     bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다. (불필요한 파일 삭제)`});
 
-    const targets = ['App.css', 'App.test.js', 'index.css', 'logo.svg', 'setupTests.js', 'reportWebVitals.js'];
+    const targets = ['App.js', 'index.js', 'App.css', 'App.test.js', 'index.css', 'logo.svg', 'setupTests.js', 'reportWebVitals.js'];
 
     for (let i=0; i<targets.length; i++) {
         try {
