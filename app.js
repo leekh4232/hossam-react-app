@@ -160,7 +160,7 @@ function createDefaultState(bar1) {
     });
 
     fs.writeFileSync('src/index.js', indexTemplate, {
-        encoding: 'utf8', flag: 'r'
+        encoding: 'utf8', flag: 'w'
     });
 
     bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다. (App.js)`});
@@ -169,7 +169,7 @@ function createDefaultState(bar1) {
     });
 
     fs.writeFileSync('src/App.js', appTemplate, {
-        encoding: 'utf8', flag: 'r'
+        encoding: 'utf8', flag: 'w'
     });
 
     fs.mkdirSync('src/components');
@@ -180,7 +180,7 @@ function createDefaultState(bar1) {
     });
 
     fs.writeFileSync('src/components/GlobalStyles.js', globalStylesTemplate, {
-        encoding: 'utf8', flag: 'r'
+        encoding: 'utf8', flag: 'w'
     });
 
     bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다. (MenuLink.js)`});
@@ -189,7 +189,7 @@ function createDefaultState(bar1) {
     });
 
     fs.writeFileSync('src/components/MenuLink.js', menuLinkTemplate, {
-        encoding: 'utf8', flag: 'r'
+        encoding: 'utf8', flag: 'w'
     });
 
     bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다. (Meta.js)`});
@@ -198,7 +198,7 @@ function createDefaultState(bar1) {
     });
 
     fs.writeFileSync('src/components/Meta.js', metaTemplate, {
-        encoding: 'utf8', flag: 'r'
+        encoding: 'utf8', flag: 'w'
     });
 }
 
