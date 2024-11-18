@@ -200,6 +200,16 @@ function createDefaultState(bar1) {
     fs.writeFileSync('src/components/Meta.js', metaTemplate, {
         encoding: 'utf8', flag: 'w'
     });
+
+    try {
+        fs.unlinkSync('.gitignore');
+    } catch (err) {
+    }
+
+    try {
+        fs.rmSync(dir, { recursive: true, force: true });
+    } catch (err) {
+    }
 }
 
 /**
