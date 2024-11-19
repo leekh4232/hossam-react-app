@@ -6,10 +6,11 @@
 class UtilHelper {
     /**
      * URL의 querystring을 JSON객체로 변환하여 리턴한다.
+     * @param {search} QueryString 문자열 (ex: ?a=100&b=200)
      * @returns json object
      */
-    getQuery() {
-        const query = new URLSearchParams(location.search);
+    getQuery(search = location.search) {
+        const query = new URLSearchParams(search);
         return Object.fromEntries(query);
     }
 
@@ -47,4 +48,5 @@ class UtilHelper {
     }
 }
 
-const utilHelper = new UtilHelper();
+//const utilHelper = new UtilHelper();
+export default new UtilHelper();
