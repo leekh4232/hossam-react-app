@@ -201,6 +201,17 @@ function createDefaultState(bar1) {
         encoding: 'utf8', flag: 'w'
     });
 
+    fs.mkdirSync('src/helpers');
+
+    bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다. (UtilHelper.js)`});
+    const metaTemplate = fs.readFileSync(path.join(__dirname, 'UtilHelper.js.template'), {
+        encoding: 'utf8', flag: 'r'
+    });
+
+    fs.writeFileSync('src/helpers/UtilHelper.js', metaTemplate, {
+        encoding: 'utf8', flag: 'w'
+    });
+
     try {
         fs.unlinkSync('.gitignore');
     } catch (err) {
