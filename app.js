@@ -204,19 +204,21 @@ function createDefaultState(bar1) {
     fs.mkdirSync('src/helpers');
 
     bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다. (UtilHelper.js)`});
-    const metaTemplate = fs.readFileSync(path.join(__dirname, 'UtilHelper.js.template'), {
+    const utilTemplate = fs.readFileSync(path.join(__dirname, 'UtilHelper.js.template'), {
         encoding: 'utf8', flag: 'r'
     });
 
-    fs.writeFileSync('src/helpers/UtilHelper.js', metaTemplate, {
+    fs.writeFileSync('src/helpers/UtilHelper.js', utilTemplate, {
         encoding: 'utf8', flag: 'w'
     });
 
+    bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다. (remove .gitignore)`});
     try {
         fs.unlinkSync('.gitignore');
     } catch (err) {
     }
 
+    bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다. (remove .git)`});
     try {
         fs.rmSync('.git', { recursive: true, force: true });
     } catch (err) {
