@@ -168,7 +168,7 @@ function createDefaultState(bar1) {
         encoding: 'utf8', flag: 'r'
     });
 
-    fs.writeFileSync('src/App.js', appTemplate, {
+    fs.writeFileSync('src/App.js', appTemplate.replaceAll('{projectName}',  projectName), {
         encoding: 'utf8', flag: 'w'
     });
 
