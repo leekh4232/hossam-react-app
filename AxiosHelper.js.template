@@ -73,3 +73,5 @@ const axiosHelper = {
         return await this.ajax(url, "delete", formData, headers);
     }
 }
+
+export default axiosHelper;

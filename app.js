@@ -46,7 +46,7 @@ const addonPackages = [
 ];
 
 var workCount = 0;
-var totalWorkCount = 11 + addonPackages.length - 1 + 15;
+var totalWorkCount = 12 + addonPackages.length - 1 + 15;
 
 /**
  * React Project 생성
@@ -187,6 +187,11 @@ function createDefaultState(bar1) {
     bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (ReduxHelper.js)`});
     try {
         fs.copyFileSync(path.join(__dirname,  'ReduxHelper.js.template'),  'src/helpers/ReduxHelper.js');
+    } catch (err) {}
+
+    bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (RegexHelper.js)`});
+    try {
+        fs.copyFileSync(path.join(__dirname,  'RegexHelper.js.template'),  'src/helpers/RegexHelper.js');
     } catch (err) {}
 
     bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (index.html)`});
