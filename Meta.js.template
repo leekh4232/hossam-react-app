@@ -19,6 +19,21 @@ const Meta = ({ title = "React Example", description = "React.js 예제 입니�
                 subject = "React.js Frontend Programming", copyright = "Lee K.H",
                 keywords = "React", url = window.location.href, image = sample,
                 icon = null, shortcutIcon = null, appleTouchIcon = null }) => {
+
+    let urlPrefix = "";
+
+    if (window?.location) {
+        urlPrefix = window.location.protocol+'//'+window.location.hostname+(window.location.port && ':'+window.location.port);
+    }
+
+    if (image && !image.startsWith('http') && urlPrefix) {
+        image = urlPrefix + image;
+    }
+
+    if (url && !url.startsWith('http') && urlPrefix) {
+        url = urlPrefix + url;
+    }
+
     return (
         <HelmetProvider>
             <Helmet>
