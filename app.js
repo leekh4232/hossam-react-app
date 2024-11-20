@@ -45,20 +45,20 @@ const addonPackages = [
     'react-snap'
 ];
 
+var workCount = 0;
+var totalWorkCount = 15 + 17 + addonPackages.length - 1;
+
 /**
  * React Project 생성
  * @param {string} projectName
  */
-async function createApp(projectName = "") {
-    // console.log("----------------------------------");
-    // console.log(" 1. 프로젝트를 생성합니다.");
-    // console.log("----------------------------------");
-    // console.log(`echo $ yarn create react-app ${projectName}`);
-
+async function createApp(projectName = "",  bar1) {
     if (fs.existsSync(projectName)) {
         throw new Error(`이미 ${projectName} 디렉토리가 존재합니다. 삭제 후 다시 실행해주세요.\n\twindows: rmdir /q/s ${projectName}\n\tmac: rm -rf ${projectName}`);
     }
 
+    workCount += 10;
+    bar1.update(workCount++, {status: "프로젝트를 생성합니다."});
     try {
         const {stdout, stderr} = await execp(`yarn create react-app ${projectName}`);
         // console.log(stdout);
@@ -72,26 +72,20 @@ async function createApp(projectName = "") {
  * 리액트 프로젝트를 yarn-berry 버전으로 변경
  * @param {str} projectName
  */
-async function setYarnBerry(projectName = "") {
-    // console.log("----------------------------------");
-    // console.log(" 2. 프로젝트를 yarn berry로 변경합니다.");
-    // console.log("----------------------------------");
+async function setYarnBerry(projectName = "",  bar1) {
 
+    workCount += 5;
+    bar1.update(workCount++, {status: "프로젝트를 yarn berry로 변경합니다."});
     process.chdir(`./${projectName}`);
-    //console.log(`$ yarn set version berry`);
 
     try {
         const {stdout, stderr} = await execp(`yarn set version berry`);
-        //console.log(stdout);
     } catch (e) {
         throw new Error(`yarn berry로 변경 중 오류가 발생했습니다. >> ${e.message}`);
     }
 
-    //console.log(`$ yarn install`);
-
     try {
         const {stdout, stderr} = await execp(`yarn install`);
-        //console.log(stdout);
     } catch (e) {
         throw new Error(`yarn install 중 오류가 발생했습니다. >> ${e.message}`);
     }
@@ -100,10 +94,8 @@ async function setYarnBerry(projectName = "") {
 /**
  * pnp 모드 설정
  */
-async function setPnpMode() {
-    // console.log("----------------------------------");
-    // console.log(" 3. berry의 모드를 pnp로 변경합니다.");
-    // console.log("----------------------------------");
+async function setPnpMode(bar1) {
+    bar1.update(workCount++, {status: "berry의 모드를 pnp로 변경합니다."});
 
     try {
         let yarnrc = fs.readFileSync('.yarnrc.yml', 'utf8');
@@ -122,16 +114,12 @@ async function setPnpMode() {
  * 필수 패키지 설치
  */
 async function installPackages(bar1) {
-    // console.log("----------------------------------");
-    // console.log(" 4. 필수 패키지를 설치합니다.");
-    // console.log("----------------------------------");
+    bar1.update(workCount++, {status: "필수 패키지를 설치합니다."});
 
     for (let i=0; i<addonPackages.length; i++) {
-        // console.log(`$ yarn add ${addonPackages[i]}`);
-        bar1.update(3, {status: `필수 패키지를 설치합니다. $ yarn add ${addonPackages[i]}`});
+        bar1.update(workCount++, {status: `필수 패키지를 설치합니다. $ yarn add ${addonPackages[i]}`});
         try {
             const {stdout, stderr} = await execp(`yarn add ${addonPackages[i]}`);
-            //console.log(stdout);
         } catch (e) {
             throw new Error(`${addonPackages[i]} 패키지 설치 중 오류가 발생했습니다. >> ${e.message}`);
         }
@@ -142,10 +130,11 @@ async function installPackages(bar1) {
  * 프로젝트 기본 상태 구성
  */
 function createDefaultState(bar1) {
-    bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다. (불필요한 파일 삭제)`});
+    bar1.update(workCount++, {status: "프로젝트의 기본 상태를 구성합니다."});
 
     const targets = ['App.js', 'index.js', 'App.css', 'App.test.js', 'index.css', 'logo.svg', 'setupTests.js', 'reportWebVitals.js'];
 
+    fs.unlinkSync(`public/index.html`);
     for (let i=0; i<targets.length; i++) {
         try {
             fs.unlinkSync(`src/${targets[i]}`);
@@ -154,107 +143,67 @@ function createDefaultState(bar1) {
         }
     }
     
-    fs.unlinkSync(`public/index.html`);
-
-    bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다. (index.js)`});
-    const indexTemplate = fs.readFileSync(path.join(__dirname, 'index.js.template'), {
-        encoding: 'utf8', flag: 'r'
-    });
-
-    fs.writeFileSync('src/index.js', indexTemplate, {
-        encoding: 'utf8', flag: 'w'
-    });
-
-    bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다. (App.js)`});
-    const appTemplate = fs.readFileSync(path.join(__dirname, 'App.js.template'), {
-        encoding: 'utf8', flag: 'r'
-    });
-
-    fs.writeFileSync('src/App.js', appTemplate.replaceAll('{projectName}',  projectName), {
-        encoding: 'utf8', flag: 'w'
-    });
-
     fs.mkdirSync('src/components');
-
-    bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다. (GlobalStyles.js)`});
-    const globalStylesTemplate = fs.readFileSync(path.join(__dirname, 'GlobalStyles.js.template'), {
-        encoding: 'utf8', flag: 'r'
-    });
-
-    fs.writeFileSync('src/components/GlobalStyles.js', globalStylesTemplate, {
-        encoding: 'utf8', flag: 'w'
-    });
-
-    bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다. (MenuLink.js)`});
-    const menuLinkTemplate = fs.readFileSync(path.join(__dirname, 'MenuLink.js.template'), {
-        encoding: 'utf8', flag: 'r'
-    });
-
-    fs.writeFileSync('src/components/MenuLink.js', menuLinkTemplate, {
-        encoding: 'utf8', flag: 'w'
-    });
-
-    bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다. (Meta.js)`});
-    const metaTemplate = fs.readFileSync(path.join(__dirname, 'Meta.js.template'), {
-        encoding: 'utf8', flag: 'r'
-    });
-
-    fs.writeFileSync('src/components/Meta.js', metaTemplate, {
-        encoding: 'utf8', flag: 'w'
-    });
-
-    fs.mkdirSync('src/helpers');
-
-    bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다. (UtilHelper.js)`});
-    const utilTemplate = fs.readFileSync(path.join(__dirname, 'UtilHelper.js.template'), {
-        encoding: 'utf8', flag: 'r'
-    });
-
-    fs.writeFileSync('src/helpers/UtilHelper.js', utilTemplate, {
-        encoding: 'utf8', flag: 'w'
-    });
-
-    bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다. (index.html)`});
-    const rootTemplate = fs.readFileSync(path.join(__dirname, 'index.html.template'), {
-        encoding: 'utf8', flag: 'r'
-    });
-
-    fs.writeFileSync('public/index.html', rootTemplate, {
-        encoding: 'utf8', flag: 'w'
-    });
-
     fs.mkdirSync('src/assets');
     fs.mkdirSync('src/assets/css');
     fs.mkdirSync('src/assets/img');
+    fs.mkdirSync('src/helpers');
+
+    bar1.update(workCount++, {status: "프로젝트의 기본 상태를 구성합니다. (index.js)"});
+    try {
+        fs.copyFileSync(path.join(__dirname,  'index.js.template'),  'src/index.js');
+    } catch (err) {}
+
+    bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (App.js)`});
+    try {
+        fs.copyFileSync(path.join(__dirname,  'App.js.template'),  'src/App.js');
+    } catch (err) {}
+
+    bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (GlobalStyles.js)`});
+    try {
+        fs.copyFileSync(path.join(__dirname,  'GlobalStyles.js.template'),  'src/components/GlobalStyles.js');
+    } catch (err) {}
+
+    bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (MenuLink.js)`});
+    try {
+        fs.copyFileSync(path.join(__dirname,  'MenuLink.js.template'),  'src/components/MenuLink.js');
+    } catch (err) {}
+
+    bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (Meta.js)`});
+    try {
+        fs.copyFileSync(path.join(__dirname,  'Meta.js.template'),  'src/components/Meta.js');
+    } catch (err) {}
+
+    bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (UtilHelper.js)`});
+    try {
+        fs.copyFileSync(path.join(__dirname,  'UtilHelper.js.template'),  'src/helpers/UtilHelper.js');
+    } catch (err) {}
+
+    bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (index.html)`});
+    try {
+        fs.copyFileSync(path.join(__dirname,  'index.html.template'),  'public/index.html');
+    } catch (err) {}
     
+    bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (sample.jpg)`});
     try {
         fs.copyFileSync(path.join(__dirname,  'sample.jpg'),  'src/assets/img/sample.jpg');
+    } catch (err) {}
+
+    bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (clear.bat)`});
+    try {
         fs.copyFileSync(path.join(__dirname,  'clear.bat'),  'clear.bat');
     } catch (err) {}
 
-    bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다. (remove .gitignore)`});
+    bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (remove .gitignore)`});
     try {
         fs.unlinkSync('.gitignore');
     } catch (err) {
     }
 
-    bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다. (remove .git)`});
+    bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (remove .git)`});
     try {
         fs.rmSync('.git', { recursive: true, force: true });
     } catch (err) {
-    }
-}
-
-/**
- * VSCode 호출
- */
-async function callCode(projectName) {
-    // console.log(` ${projectName} 프로젝트가 생성되었습니다. Visual Studio Code를 호출합니다.`);
-    try {
-        const {stdout, stderr} = await execp(`code .`);
-        //console.log(stdout);
-    } catch (e) {
-        throw new Error(`Visual Studio Code 호출 중 오류가 발생했습니다. >> ${e.message}`);
     }
 }
 
@@ -278,30 +227,18 @@ async function callCode(projectName) {
         hideCursor: true
     }, cliProgress.Presets.shades_classic);
 
-    bar1.start(5, 0, {
+    bar1.start(totalWorkCount, 0, {
         status: ""
     });
 
     try {
-        bar1.update(0, {status: "프로젝트를 생성 중입니다."});
-        await createApp(projectName);
-
-        bar1.update(1, {status: "yarn berry로 변경 중입니다."});
-        await setYarnBerry(projectName);
-
-        bar1.update(2, {status: "pnp 모드를 설정 중입니다."});
-        await setPnpMode();
-
-        bar1.update(3, {status: "필수 패키지를 설치합니다."});
+        await createApp(projectName,  bar1);
+        await setYarnBerry(projectName,  bar1);
+        await setPnpMode(bar1);
         await installPackages(bar1);
-
-        bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다.`});
         createDefaultState(bar1);
 
-        bar1.update(5, {status: "프로젝트 생성이 완료되었습니다."});
-        //await callCode(projectName);
-
-        //bar1.update(6, {status: "프로젝트 생성이 완료되었습니다. fin :) "});
+        bar1.update(totalWorkCount, {status: `프로젝트 생성이 완료되었습니다.`});
         bar1.stop();
     } catch (e) {
         bar1.stop();
