@@ -57,7 +57,6 @@ async function createApp(projectName = "",  bar1) {
         throw new Error(`이미 ${projectName} 디렉토리가 존재합니다. 삭제 후 다시 실행해주세요.\n\twindows: rmdir /q/s ${projectName}\n\tmac: rm -rf ${projectName}`);
     }
 
-    workCount += 10;
     bar1.update(workCount++, {status: "프로젝트를 생성합니다."});
     try {
         const {stdout, stderr} = await execp(`yarn create react-app ${projectName}`);
@@ -66,6 +65,7 @@ async function createApp(projectName = "",  bar1) {
     } catch (e) {
         throw new Error(`리액트 앱 생성 중 오류가 발생했습니다. >> ${e.message}`);
     }
+    workCount += 10;
 }
 
 /**
@@ -74,7 +74,6 @@ async function createApp(projectName = "",  bar1) {
  */
 async function setYarnBerry(projectName = "",  bar1) {
 
-    workCount += 5;
     bar1.update(workCount++, {status: "프로젝트를 yarn berry로 변경합니다."});
     process.chdir(`./${projectName}`);
 
@@ -89,6 +88,7 @@ async function setYarnBerry(projectName = "",  bar1) {
     } catch (e) {
         throw new Error(`yarn install 중 오류가 발생했습니다. >> ${e.message}`);
     }
+    workCount += 5;
 }
 
 /**
