@@ -8,7 +8,7 @@ import React from "react";
 // SEO 처리 기능 패키지
 import { Helmet, HelmetProvider } from "react-helmet-async";
 // 미리보기 이미지 샘플
-//import sample from "../assets/img/sample.png";
+import sample from "../assets/img/sample.jpg";
 
 /**
  * SEO 처리 컴포넌트
@@ -17,7 +17,7 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
  */
 const Meta = ({ title = "React Example", description = "React.js 예제 입니다.", author = "호쌤",
                 subject = "React.js Frontend Programming", copyright = "Lee K.H",
-                keywords = "React", url = window.location.href, image = null,
+                keywords = "React", url = window.location.href, image = sample,
                 icon = null, shortcutIcon = null, appleTouchIcon = null }) => {
     return (
         <HelmetProvider>

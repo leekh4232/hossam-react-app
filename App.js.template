@@ -23,7 +23,7 @@ import GlobalStyles from './components/GlobalStyles';
 
 const App = memo(() => {
     return (
-        <div>
+        <>
             <Meta />
             {/* reset.css 적용하기 (여기서는 사용 안함) */}
             {/* <Reset /> */}
@@ -41,7 +41,7 @@ const App = memo(() => {
             <Routes>
                 {/* <Route path="__DEFINE_URL__" element={<__COMPONENT_NAME__ />} /> */}
             </Routes>
-        </div>
+        </>
     )
 });
 

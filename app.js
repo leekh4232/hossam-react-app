@@ -153,6 +153,8 @@ function createDefaultState(bar1) {
             continue;
         }
     }
+    
+    fs.unlinkSync(`public/index.html`);
 
     bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다. (index.js)`});
     const indexTemplate = fs.readFileSync(path.join(__dirname, 'index.js.template'), {
@@ -211,6 +213,23 @@ function createDefaultState(bar1) {
     fs.writeFileSync('src/helpers/UtilHelper.js', utilTemplate, {
         encoding: 'utf8', flag: 'w'
     });
+
+    bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다. (index.html)`});
+    const rootTemplate = fs.readFileSync(path.join(__dirname, 'index.html.template'), {
+        encoding: 'utf8', flag: 'r'
+    });
+
+    fs.writeFileSync('public/index.html', rootTemplate, {
+        encoding: 'utf8', flag: 'w'
+    });
+
+    fs.mkdirSync('src/assets');
+    fs.mkdirSync('src/assets/css');
+    fs.mkdirSync('src/assets/img');
+    
+    try {
+        fs.copyFileSync(path.join(__dirname,  'sample.jpg'),  'src/assets/img/sample.jpg');
+    } catch (err) {}
 
     bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다. (remove .gitignore)`});
     try {
