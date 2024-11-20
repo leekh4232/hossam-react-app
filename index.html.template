@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta translate="no" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>React App</title>
+  <title>{projectName}</title>
 </head>
 
 <body>

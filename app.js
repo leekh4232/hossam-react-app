@@ -155,9 +155,13 @@ function createDefaultState(bar1) {
     } catch (err) {}
 
     bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (App.js)`});
-    try {
-        fs.copyFileSync(path.join(__dirname,  'App.js.template'),  'src/App.js');
-    } catch (err) {}
+    const appTemplate = fs.readFileSync(path.join(__dirname, 'App.js.template'), {
+        encoding: 'utf8', flag: 'r'
+    });
+
+    fs.writeFileSync('src/App.js', appTemplate.replaceAll('{projectName}',  projectName), {
+        encoding: 'utf8', flag: 'w'
+    });
 
     bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (GlobalStyles.js)`});
     try {
@@ -170,9 +174,13 @@ function createDefaultState(bar1) {
     } catch (err) {}
 
     bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (Meta.js)`});
-    try {
-        fs.copyFileSync(path.join(__dirname,  'Meta.js.template'),  'src/components/Meta.js');
-    } catch (err) {}
+    const metaTemplate = fs.readFileSync(path.join(__dirname, 'Meta.js.template'), {
+        encoding: 'utf8', flag: 'r'
+    });
+
+    fs.writeFileSync('src/components/Meta.js', metaTemplate.replaceAll('{projectName}',  projectName), {
+        encoding: 'utf8', flag: 'w'
+    });
 
     bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (UtilHelper.js)`});
     try {
@@ -195,9 +203,13 @@ function createDefaultState(bar1) {
     } catch (err) {}
 
     bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (index.html)`});
-    try {
-        fs.copyFileSync(path.join(__dirname,  'index.html.template'),  'public/index.html');
-    } catch (err) {}
+    const indexTemplate = fs.readFileSync(path.join(__dirname, 'index.html.template'), {
+        encoding: 'utf8', flag: 'r'
+    });
+
+    fs.writeFileSync('public/index.html', indexTemplate.replaceAll('{projectName}',  projectName), {
+        encoding: 'utf8', flag: 'w'
+    });
     
     bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (sample.jpg)`});
     try {

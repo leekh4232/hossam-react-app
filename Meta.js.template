@@ -15,7 +15,7 @@ import sample from "../assets/img/sample.jpg";
  * @param props
  * @returns {JSX.Element}
  */
-const Meta = ({ title = "React Example", description = "React.js 예제 입니다.", author = "호쌤",
+const Meta = ({ title = "{projectName}", description = "{projectName} 예제 입니다.", author = "호쌤",
                 subject = "React.js Frontend Programming", copyright = "Lee K.H",
                 keywords = "React", url = window.location.href, image = sample,
                 icon = null, shortcutIcon = null, appleTouchIcon = null }) => {
