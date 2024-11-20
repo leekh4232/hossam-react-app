@@ -229,6 +229,7 @@ function createDefaultState(bar1) {
     
     try {
         fs.copyFileSync(path.join(__dirname,  'sample.jpg'),  'src/assets/img/sample.jpg');
+        fs.copyFileSync(path.join(__dirname,  'clear.bat'),  'clear.bat');
     } catch (err) {}
 
     bar1.update(4, {status: `프로젝트의 기본 상태를 구성합니다. (remove .gitignore)`});
