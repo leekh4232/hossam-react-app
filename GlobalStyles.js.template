@@ -1,11 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
-// reset.css
-// import reset from 'styled-reset';
-
 const GlobalStyles = createGlobalStyle`
-    //${reset}
-    
     *:not(.fa) {
         font-family: "Noto Sans KR", "NaumGothic", "Malgun Gothic";
     }
