@@ -147,6 +147,8 @@ function createDefaultState(bar1) {
     fs.mkdirSync('src/assets');
     fs.mkdirSync('src/assets/css');
     fs.mkdirSync('src/assets/img');
+    fs.mkdirSync('src/pages');
+    fs.mkdirSync('src/slices');
     fs.mkdirSync('src/helpers');
 
     bar1.update(workCount++, {status: "프로젝트의 기본 상태를 구성합니다. (index.js)"});
