@@ -156,6 +156,11 @@ function createDefaultState(bar1) {
         fs.copyFileSync(path.join(__dirname,  'index.js.template'),  'src/index.js');
     } catch (err) {}
 
+    bar1.update(workCount++, {status: "프로젝트의 기본 상태를 구성합니다. (store.js)"});
+    try {
+        fs.copyFileSync(path.join(__dirname,  'store.js.template'),  'src/store.js');
+    } catch (err) {}
+
     bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (App.js)`});
     const appTemplate = fs.readFileSync(path.join(__dirname, 'App.js.template'), {
         encoding: 'utf8', flag: 'r'

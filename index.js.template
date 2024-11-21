@@ -17,7 +17,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     // 리덕스 스토어 연결
     <Provider store={store}>
-        // Routing처리를 <App>에 전파한다.
+        {/* Routing처리를 <App>에 전파한다. */}
         <BrowserRouter basename={process.env.PUBLIC_URL}>
             <App />
         </BrowserRouter>
