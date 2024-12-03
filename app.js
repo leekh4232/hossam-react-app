@@ -46,7 +46,7 @@ const addonPackages = [
 ];
 
 var workCount = 0;
-var totalWorkCount = 13 + addonPackages.length - 1 + 15;
+var totalWorkCount = 15 + addonPackages.length - 1 + 15;
 
 /**
  * React Project 생성
@@ -188,6 +188,16 @@ function createDefaultState(bar1) {
     fs.writeFileSync('src/components/Meta.js', metaTemplate.replaceAll('{projectName}',  projectName), {
         encoding: 'utf8', flag: 'w'
     });
+
+    bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (Spinner.js)`});
+    try {
+        fs.copyFileSync(path.join(__dirname,  'Spinner.js.template'),  'src/components/Spinner.js');
+    } catch (err) {}
+
+    bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (Table.js)`});
+    try {
+        fs.copyFileSync(path.join(__dirname,  'Table.js.template'),  'src/components/Table.js');
+    } catch (err) {}
 
     bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (MediaQuery.js)`});
     try {
