@@ -42,7 +42,7 @@ function getDefaultSlice(slideName, asyncReducers=[], callback=null, reducers={}
         initialState: {
             status: 200,
             message: "OK",
-            item: {},
+            item: null,
             timestamp: null,
             loading: false,
         },
