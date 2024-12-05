@@ -37,27 +37,19 @@ const axiosHelper = {
                     break;
             }
         } catch (error) {
-            let alertTitle = null;
-            let alertMsg = null;
-            console.log(error);
+            const response = error.response;
+            const data = response?.data;
 
-            if (error.response?.data) {
-                const data = error.response.data;
+            const e = new Error(data?.message || response?.statusText || "An error occurred in the Axios.");
+            e.status = data?.status || response?.status || 0;
+            e.statusText = data?.message || response?.statusText || "Unknown Error";
+            e.trace = data?.trace || response?.trace || "No trace information";
 
-                alertTitle = `${data.status} Error`;
-                alertMsg = data.message;
+            console.group(`axiosHelper::ajax --> ${e.status} Error, ${e.statusText}`);
+            console.error(e.trace);
+            console.groupEnd();
 
-                console.error("Error occurred in the backend server.");
-                console.error(`[${data.status}] ${data.error}`);
-                console.error(data.trace);
-            } else {
-                alertMsg = error.message;
-
-                console.error("Error occurred in the Axios.");
-                console.error(`[${error.code}] ${error.message}`);
-            }
-
-            throw new Error(`[${alertTitle}]\n${alertMsg}`);
+            throw e;
         }
 
         return response?.data;
