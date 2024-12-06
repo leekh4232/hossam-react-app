@@ -180,6 +180,11 @@ function createDefaultState(bar1) {
         fs.copyFileSync(path.join(__dirname,  'MenuLink.js.template'),  'src/components/MenuLink.js');
     } catch (err) {}
 
+    bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (ErrorView.js)`});
+    try {
+        fs.copyFileSync(path.join(__dirname,  'ErrorView.js.template'),  'src/components/ErrorView.js');
+    } catch (err) {}
+
     bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (Meta.js)`});
     const metaTemplate = fs.readFileSync(path.join(__dirname, 'Meta.js.template'), {
         encoding: 'utf8', flag: 'r'
