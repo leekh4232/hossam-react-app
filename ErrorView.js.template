@@ -19,18 +19,6 @@ const ErrorViewContainer = styled.div`
             margin: 0;
             margin-bottom: 10px;
         }
-
-        pre {
-            color: #900;
-            font-size: 12px;
-            line-height: 1.25;
-            padding: 10px;
-            max-height: 300px;
-            overflow-y: auto;
-            margin: 0;
-            margin-bottom: 10px;
-            white-space: pre-wrap;
-        }
     }
 `;
 
@@ -41,7 +29,6 @@ const ErrorView = memo((status, message, trace) => {
                 <div className="error-info">
                     <h1>{status}</h1>
                     <p>{message}</p>
-                    <pre>{trace}</pre>
                 </div>
             </ErrorViewContainer>
         );
