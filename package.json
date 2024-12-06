@@ -15,7 +15,7 @@
   "dependencies": {
     "ansi-colors": "^4.1.3",
     "cli-progress": "^3.12.0",
-    "hossam-react-app": "file:",
+    "hossam-react-app": "file:.",
     "minimist": "^1.2.8",
     "shelljs": "^0.8.5"
   }
