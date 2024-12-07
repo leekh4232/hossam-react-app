@@ -23,12 +23,11 @@ const fulfilled = (state, {meta, payload}) => {
 
 // 리덕스가 실패 상태를 관리하는 상태값을 생성하는 함수
 const rejected = (state, {meta, payload}) => {
-    console.log(payload);
     return {
         ...state,
         loading: false,
-        status: payload.status || 0,
-        message: payload.message || 'Unknown Error'
+        status: payload?.status || 0,
+        message: payload?.message || 'Unknown Error'
     }
 };
 
@@ -38,7 +37,7 @@ const reduxHelper = {
     // 1) sliceName: slice 객체의 이름
     // 2) extraReducers: 비동기 처리를 위한 액션함수 배열
     // 3) callback : 비동기 처리 성공시 호출할 콜백함수. 없다면 기본 fulfilled 함수 호출
-    getDefaultSlice: (slideName, extraReducers=[], callback=null, reducers={}) => {
+    getDefaultSlice: (slideName, extraReducers=[], callback={}, reducers={}) => {
         return createSlice({
             name: slideName,
             initialState: {
@@ -52,7 +51,7 @@ const reduxHelper = {
             extraReducers: (builder) => {
                 extraReducers.forEach((v, i) => {
                     builder.addCase(v.pending, pending);
-                    builder.addCase(v.fulfilled, callback || fulfilled);
+                    builder.addCase(v.fulfilled, callback[v.fulfilled] || fulfilled);
                     builder.addCase(v.rejected, rejected);
                 })
             }
