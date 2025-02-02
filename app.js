@@ -94,7 +94,7 @@ async function setYarnBerry(projectName = "",  bar1) {
 /**
  * pnp 모드 설정
  */
-async function setPnpMode(bar1) {
+async function setPnpMode(projectName, bar1) {
     bar1.update(workCount++, {status: "berry의 모드를 pnp로 변경합니다."});
 
     try {
@@ -104,6 +104,7 @@ async function setPnpMode(bar1) {
 
         let pkJson = fs.readFileSync('package.json', 'utf8');
         let pkJsonReplace = pkJson.replaceAll('eslintConfig', 'x-eslintConfig');
+        pkJsonReplace = pkJsonReplace.replaceAll('"dependencies"', `"homepage": "${projectName}",\n  "dependencies"`);
         fs.writeFileSync('package.json', pkJsonReplace, 'utf8');
     } catch (e) {
         throw new Error(`pnp 모드 설정 중 오류가 발생했습니다. >> ${e.message}`);
@@ -142,7 +143,7 @@ function createDefaultState(bar1) {
             continue;
         }
     }
-    
+
     fs.mkdirSync('src/components');
     fs.mkdirSync('src/assets');
     fs.mkdirSync('src/assets/css');
@@ -237,7 +238,7 @@ function createDefaultState(bar1) {
     fs.writeFileSync('public/index.html', indexTemplate.replaceAll('{projectName}',  projectName), {
         encoding: 'utf8', flag: 'w'
     });
-    
+
     bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (sample.jpg)`});
     try {
         fs.copyFileSync(path.join(__dirname,  'sample.jpg'),  'src/assets/img/sample.jpg');
@@ -288,7 +289,7 @@ function createDefaultState(bar1) {
     try {
         await createApp(projectName,  bar1);
         await setYarnBerry(projectName,  bar1);
-        await setPnpMode(bar1);
+        await setPnpMode(projectName, bar1);
         await installPackages(bar1);
         createDefaultState(bar1);
 
