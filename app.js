@@ -29,20 +29,20 @@ if (projectName.includes("/") || projectName.includes("\\")) {
 const execp = util.promisify(exec);
 const addonPackages = [
     'react-router-dom',
-    'prop-types',
-    'react-helmet-async',
+    // 'prop-types',
+    // 'react-helmet-async',
     'styled-reset',
     'styled-components',
     'styled-components-breakpoints',
-    'dayjs',
-    'classnames',
-    'axios',
-    'react-loader-spinner',
-    'react-redux',
-    '@reduxjs/toolkit',
-    'redux-devtools-extension',
-    'react-intersection-observer',
-    'react-snap'
+    // 'dayjs',
+    // 'classnames',
+    // 'axios',
+    // 'react-loader-spinner',
+    // 'react-redux',
+    // '@reduxjs/toolkit',
+    // 'redux-devtools-extension',
+    // 'react-intersection-observer',
+    // 'react-snap'
 ];
 
 var workCount = 0;
@@ -135,32 +135,32 @@ function createDefaultState(bar1) {
 
     const targets = ['App.js', 'index.js', 'App.css', 'App.test.js', 'index.css', 'logo.svg', 'setupTests.js', 'reportWebVitals.js'];
 
-    fs.unlinkSync(`public/index.html`);
-    for (let i=0; i<targets.length; i++) {
-        try {
-            fs.unlinkSync(`src/${targets[i]}`);
-        } catch (err) {
-            continue;
-        }
-    }
+    // fs.unlinkSync(`public/index.html`);
+    // for (let i=0; i<targets.length; i++) {
+    //     try {
+    //         fs.unlinkSync(`src/${targets[i]}`);
+    //     } catch (err) {
+    //         continue;
+    //     }
+    // }
 
-    fs.mkdirSync('src/components');
-    fs.mkdirSync('src/assets');
-    fs.mkdirSync('src/assets/css');
-    fs.mkdirSync('src/assets/img');
+    //fs.mkdirSync('src/components');
+    //fs.mkdirSync('src/assets');
+    //fs.mkdirSync('src/assets/css');
+    //fs.mkdirSync('src/assets/img');
     fs.mkdirSync('src/pages');
-    fs.mkdirSync('src/slices');
-    fs.mkdirSync('src/helpers');
+    //fs.mkdirSync('src/slices');
+    //fs.mkdirSync('src/helpers');
 
     bar1.update(workCount++, {status: "프로젝트의 기본 상태를 구성합니다. (index.js)"});
     try {
         fs.copyFileSync(path.join(__dirname,  'index.js.template'),  'src/index.js');
     } catch (err) {}
 
-    bar1.update(workCount++, {status: "프로젝트의 기본 상태를 구성합니다. (store.js)"});
-    try {
-        fs.copyFileSync(path.join(__dirname,  'store.js.template'),  'src/store.js');
-    } catch (err) {}
+    // bar1.update(workCount++, {status: "프로젝트의 기본 상태를 구성합니다. (store.js)"});
+    // try {
+    //     fs.copyFileSync(path.join(__dirname,  'store.js.template'),  'src/store.js');
+    // } catch (err) {}
 
     bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (App.js)`});
     const appTemplate = fs.readFileSync(path.join(__dirname, 'App.js.template'), {
@@ -171,78 +171,78 @@ function createDefaultState(bar1) {
         encoding: 'utf8', flag: 'w'
     });
 
-    bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (GlobalStyles.js)`});
-    try {
-        fs.copyFileSync(path.join(__dirname,  'GlobalStyles.js.template'),  'src/components/GlobalStyles.js');
-    } catch (err) {}
+    // bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (GlobalStyles.js)`});
+    // try {
+    //     fs.copyFileSync(path.join(__dirname,  'GlobalStyles.js.template'),  'src/components/GlobalStyles.js');
+    // } catch (err) {}
 
-    bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (MenuLink.js)`});
-    try {
-        fs.copyFileSync(path.join(__dirname,  'MenuLink.js.template'),  'src/components/MenuLink.js');
-    } catch (err) {}
+    // bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (MenuLink.js)`});
+    // try {
+    //     fs.copyFileSync(path.join(__dirname,  'MenuLink.js.template'),  'src/components/MenuLink.js');
+    // } catch (err) {}
 
-    bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (ErrorView.js)`});
-    try {
-        fs.copyFileSync(path.join(__dirname,  'ErrorView.js.template'),  'src/components/ErrorView.js');
-    } catch (err) {}
+    // bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (ErrorView.js)`});
+    // try {
+    //     fs.copyFileSync(path.join(__dirname,  'ErrorView.js.template'),  'src/components/ErrorView.js');
+    // } catch (err) {}
 
-    bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (Meta.js)`});
-    const metaTemplate = fs.readFileSync(path.join(__dirname, 'Meta.js.template'), {
-        encoding: 'utf8', flag: 'r'
-    });
+    // bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (Meta.js)`});
+    // const metaTemplate = fs.readFileSync(path.join(__dirname, 'Meta.js.template'), {
+    //     encoding: 'utf8', flag: 'r'
+    // });
 
-    fs.writeFileSync('src/components/Meta.js', metaTemplate.replaceAll('{projectName}',  projectName), {
-        encoding: 'utf8', flag: 'w'
-    });
+    // fs.writeFileSync('src/components/Meta.js', metaTemplate.replaceAll('{projectName}',  projectName), {
+    //     encoding: 'utf8', flag: 'w'
+    // });
 
-    bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (Spinner.js)`});
-    try {
-        fs.copyFileSync(path.join(__dirname,  'Spinner.js.template'),  'src/components/Spinner.js');
-    } catch (err) {}
+    // bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (Spinner.js)`});
+    // try {
+    //     fs.copyFileSync(path.join(__dirname,  'Spinner.js.template'),  'src/components/Spinner.js');
+    // } catch (err) {}
 
-    bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (Table.js)`});
-    try {
-        fs.copyFileSync(path.join(__dirname,  'Table.js.template'),  'src/components/Table.js');
-    } catch (err) {}
+    // bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (Table.js)`});
+    // try {
+    //     fs.copyFileSync(path.join(__dirname,  'Table.js.template'),  'src/components/Table.js');
+    // } catch (err) {}
 
-    bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (MediaQuery.js)`});
-    try {
-        fs.copyFileSync(path.join(__dirname,  'MediaQuery.js.template'),  'src/components/MediaQuery.js');
-    } catch (err) {}
+    // bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (MediaQuery.js)`});
+    // try {
+    //     fs.copyFileSync(path.join(__dirname,  'MediaQuery.js.template'),  'src/components/MediaQuery.js');
+    // } catch (err) {}
 
-    bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (UtilHelper.js)`});
-    try {
-        fs.copyFileSync(path.join(__dirname,  'UtilHelper.js.template'),  'src/helpers/UtilHelper.js');
-    } catch (err) {}
+    // bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (UtilHelper.js)`});
+    // try {
+    //     fs.copyFileSync(path.join(__dirname,  'UtilHelper.js.template'),  'src/helpers/UtilHelper.js');
+    // } catch (err) {}
 
-    bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (AxiosHelper.js)`});
-    try {
-        fs.copyFileSync(path.join(__dirname,  'AxiosHelper.js.template'),  'src/helpers/AxiosHelper.js');
-    } catch (err) {}
+    // bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (AxiosHelper.js)`});
+    // try {
+    //     fs.copyFileSync(path.join(__dirname,  'AxiosHelper.js.template'),  'src/helpers/AxiosHelper.js');
+    // } catch (err) {}
 
-    bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (ReduxHelper.js)`});
-    try {
-        fs.copyFileSync(path.join(__dirname,  'ReduxHelper.js.template'),  'src/helpers/ReduxHelper.js');
-    } catch (err) {}
+    // bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (ReduxHelper.js)`});
+    // try {
+    //     fs.copyFileSync(path.join(__dirname,  'ReduxHelper.js.template'),  'src/helpers/ReduxHelper.js');
+    // } catch (err) {}
 
-    bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (RegexHelper.js)`});
-    try {
-        fs.copyFileSync(path.join(__dirname,  'RegexHelper.js.template'),  'src/helpers/RegexHelper.js');
-    } catch (err) {}
+    // bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (RegexHelper.js)`});
+    // try {
+    //     fs.copyFileSync(path.join(__dirname,  'RegexHelper.js.template'),  'src/helpers/RegexHelper.js');
+    // } catch (err) {}
 
-    bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (index.html)`});
-    const indexTemplate = fs.readFileSync(path.join(__dirname, 'index.html.template'), {
-        encoding: 'utf8', flag: 'r'
-    });
+    // bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (index.html)`});
+    // const indexTemplate = fs.readFileSync(path.join(__dirname, 'index.html.template'), {
+    //     encoding: 'utf8', flag: 'r'
+    // });
 
-    fs.writeFileSync('public/index.html', indexTemplate.replaceAll('{projectName}',  projectName), {
-        encoding: 'utf8', flag: 'w'
-    });
+    // fs.writeFileSync('public/index.html', indexTemplate.replaceAll('{projectName}',  projectName), {
+    //     encoding: 'utf8', flag: 'w'
+    // });
 
-    bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (sample.jpg)`});
-    try {
-        fs.copyFileSync(path.join(__dirname,  'sample.jpg'),  'src/assets/img/sample.jpg');
-    } catch (err) {}
+    // bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (sample.jpg)`});
+    // try {
+    //     fs.copyFileSync(path.join(__dirname,  'sample.jpg'),  'src/assets/img/sample.jpg');
+    // } catch (err) {}
 
     bar1.update(workCount++, {status: `프로젝트의 기본 상태를 구성합니다. (clear.bat)`});
     try {
